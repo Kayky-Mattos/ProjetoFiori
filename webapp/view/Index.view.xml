@@ -1,0 +1,69 @@
+<mvc:View controllerName="consultaprodutos.controller.Index"
+    xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
+    xmlns="sap.m">
+    <Page id="page" title="{i18n>title}">
+        <content>
+            <FlexBox justifyContent="Center" id="flxbox">
+                <Input id="inpbusca"/>
+                <Button text="Buscar" press="onPressBuscar" id="bt"/>
+            </FlexBox>
+            <VBox id="productBox" visible="true">
+                <ObjectHeader title="{ProductModel>/product/product_name}"
+                              number="{ProductModel>/product/quantity}" id="objheader">
+                    <attributes>
+                        <ObjectAttribute title="Código de Barras" text="{ProductModel>/code}" id="objatrib" />
+                        <ObjectAttribute title="Marca" text="{ProductModel>/product/brands}" id="obj" />
+                    </attributes>
+                </ObjectHeader>
+
+                <Panel headerText="Informações" id="pan">
+                    <content>
+                        <HBox id="hb">
+                            <Image src="{ProductModel>/product/image_front_url}" id="imgfront" width="10em" press="onClickImage"/>
+                                <VBox id="vb">
+                                    <ObjectAttribute title="Categoria" text="{ProductModel>/product/categories}" id="objatribcat" />
+                                    <ObjectAttribute title="Nome do produto" text="{ProductModel>/product/ecoscore_data/agribalyse/name_en}" id="objqtdperunit" />
+                                </VBox>
+                        </HBox>
+                    </content>
+                </Panel>
+
+                <Panel headerText="Ingredientes" id="panIngredients">
+                    <content>
+                        <HBox id="hbIngredients">
+                            <Image src="{ProductModel>/product/image_ingredients_url}" id="imgfIngredients" width="10em" press="onClickImage" />
+                                <Table items ="{ProductModel>/product/ingredients}">
+                                    <columns>
+                                        <Column>
+                                            <Text text="Descrição" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Porcentagem Mínima" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Porcentagem Máxima" />
+                                        </Column>
+                                        <Column>
+                                            <Text text="Porcentagem Estimada" />
+                                        </Column>
+                                    </columns>
+                                    <items>
+                                    <ColumnListItem >
+                                        <cells>
+                                            <Text text="{ProductModel>text}" />
+                                            <Text text="{ProductModel>percent_min}" />
+                                            <Text text="{ProductModel>percent_max}" />
+                                            <Text text="{ProductModel>percent_estimate}" />
+                                        </cells>
+                                    </ColumnListItem>
+                                    </items>
+                                </Table>
+                        </HBox>
+                    </content>
+                </Panel>
+
+            </VBox>
+        </content>
+
+    </Page>
+</mvc:View>
